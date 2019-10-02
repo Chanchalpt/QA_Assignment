@@ -6,39 +6,76 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp21
 {
-    class Program
+    //TriangleSolver Class 
+    public class TriangleSolver
     {
-        static void Main(string[] args)
+        //Analyze function
+        public static string Analyze(int one, int two, int three)
         {
-            string numberString;
-            int num;
-            //Taking user selections
-            do
+            //testing for equilateral triangle
+            if (one == two && two == three)
             {
-                Console.WriteLine("1. Enter triangle dimension: ");
-                Console.WriteLine("2. Exit");
-                Console.Write("Enter your Selection: ");
-                numberString = Console.ReadLine();
-            } while (!(int.TryParse(numberString, out num)) || num < 0 || num > 3);
-            //taking triangle sides from user input
-                if (num == 1)
+                return "It forms a equilateral triangle.";
+            }
+            //testing for Isosceles triangle
+            else if (one == two || two == three || one == three)
+            {
+                return "It forms a Isosceles triangle.";
+            }
+            //testing for scalene triangle and triangle cannot be formed
+            else
+            {
+                if (one >= two)
                 {
-                    Console.Write("Enter number one: ");
-                    int numOne = int.Parse(Console.ReadLine());
-                    Console.Write("Enter number two: ");
-                    int numTwo = int.Parse(Console.ReadLine());
-                    Console.Write("Enter number three: ");
-                    int numThree = int.Parse(Console.ReadLine());
-                    string result = TriangleSolver.Analyze(numOne, numTwo, numThree);
-                    Console.WriteLine(result);
+                    if (one >= three)
+                    {
+                        if (one <(two + three))
+                        {
+                            return "It forms a scalene triangle.";
+                        }
+                        else
+                        {
+                            return "Cannot form a triangle.";
+                        }
+                    }
+                    else
+                    {
+                        if (three < (one + two))
+                        {
+                            return "It forms a scalene triangle.";
+                        }
+                        else
+                        {
+                            return "Cannot form a triangle.";
+                        }
+                    }
                 }
-                //for exiting program
-                else if (num == 2)
+                else
                 {
-                    Environment.ExitCode = 5;
+                    if (two >= three)
+                    {
+                        if (two < (one + three))
+                        {
+                            return "It forms a scalene triangle.";
+                        }
+                        else
+                        {
+                            return "Cannot form a triangle.";
+                        }
+                    }
+                    else
+                    {
+                        if (three <(one + two))
+                        {
+                            return "It forms a scalene triangle.";
+                        }
+                        else
+                        {
+                            return "Cannot form a triangle.";
+                        }
+                    }
                 }
-
-                Console.ReadKey();
+            }
         }
     }
 }
